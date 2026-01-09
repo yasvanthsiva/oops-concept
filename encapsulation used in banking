@@ -1,0 +1,126 @@
+import java.util.*;
+
+//account creation
+class bankaccount{
+    int id;
+    String name;
+    int balance;
+    
+    //constructor
+    public bankaccount(int id,String name,int balance){
+        this.id =id;
+        this.name=name;
+        this.balance =balance;
+    }
+    
+    
+    //getter
+    
+    int getid(int id){
+        return id;
+    }
+    
+    String getname(int id){
+        return name;
+    }
+    
+    int getbalance(int id){
+        return balance;
+    }
+    void deposite(int ammount){
+        if(ammount>0){
+            balance+=ammount;
+        }
+    }
+    
+    void withdraw(int ammount){
+        if(balance >0&&ammount<=balance){
+            balance-=ammount;
+        }
+    }
+}
+
+// business logics
+class bankservice{
+    
+    HashMap<Integer,bankaccount> account = new HashMap<>();
+    
+    //account creation
+    void createaccont(int id,String name,int balance){
+        if(!account.containsKey(id)){
+            account.put(id,new bankaccount(id,name,balance));
+            System.out.println("Account created succesfully : "+name);
+            searchaccount(id);
+        }
+        else{
+            System.out.println("Account has been already existed");
+        }
+    }
+    
+     //deposite 
+     void deposite(int id,String name,int ammount){
+         bankaccount acc =account.get(id);
+         if(acc!=null){
+             acc.deposite(ammount);
+             System.out.println("ammount deposited succesfully : "+name);
+         }
+         else{
+             System.out.println("no valid account is there");
+         }
+     }
+    
+    //withdraw
+    void withdraw(int id,String name, int ammount){
+        bankaccount acc = account.get(id);
+        if(acc!=null){
+            acc.withdraw(ammount);
+            System.out.println("ammount withdrawn from your account : "+name);
+        }
+        else{
+           System.out.println("no valid account is there");
+        }
+    }
+    
+    //search account
+    void searchaccount(int id){
+        bankaccount acc = account.get(id);
+        if(acc!=null){
+        System.out.println("---------------------------------------");
+            System.out.println("account id : "+acc.getid(id));
+            System.out.println("Name : "+acc.getname(id));
+            System.out.println("balance : "+acc.getbalance(id));
+        System.out.println("---------------------------------------");
+        }
+        else{
+            System.out.println("there is no valid account");
+        }
+    }
+}
+
+
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc= new Scanner(System.in);
+		
+		bankservice acc = new bankservice();
+		 
+		 //create account
+		 acc.createaccont(101,"yash",1000);
+		 acc.createaccont(102,"siva",1000);
+           
+         //deposite
+         acc.deposite(101,"yash",1000);
+         
+         //search account
+         acc.searchaccount(101);	 
+         
+         //withdrawn
+         acc.withdraw(102,"siva",999);
+         acc.searchaccount(102);
+
+	}
+}
