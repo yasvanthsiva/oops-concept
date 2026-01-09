@@ -1,0 +1,61 @@
+import java.util.*;
+class bankacc{
+    int id;
+    String name;
+    int balance;
+    //contructor
+    public bankacc(){
+        
+    }
+    
+    //setter
+    void setid(int id){
+        this.id=id;
+    }
+    void setname(String name){
+        this.name = name;
+    }
+    void setbalance(int balance){
+        this.balance=balance;
+    }
+    
+    //getter
+    int getid(){
+        return id;
+    }
+    String getname(){
+        return name;
+    }
+    int getbalance(){
+        return balance;
+    }
+    
+    
+    
+}
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    Scanner sc = new Scanner(System.in);
+	    int n =sc.nextInt();
+		ArrayList<bankacc> l = new ArrayList<>();
+		for(int i=0;i<n;i++){
+		   bankacc acc = new bankacc();
+		   acc.setid(sc.nextInt());
+		   acc.setname(sc.next());
+		   acc.setbalance(sc.nextInt());
+		   l.add(acc);
+		}
+		   
+		   for(bankacc ac :l){
+		       System.out.println("id of the customer : "+ac.getid());
+		       System.out.println("name of the customer : "+ac.getname());
+		       System.out.println("balance : "+ac.getbalance());
+		       System.out.println("-----------------------------------------");
+		   }
+		  // System.out.print(l);
+
+	}
+}
